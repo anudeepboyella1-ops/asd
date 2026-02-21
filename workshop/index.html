@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SubtitleAI – Video Subtitle Generator | Powered by AWS</title>
+  <meta name="description" content="Automatically transcribe and translate video subtitles in 75+ languages using AWS Transcribe and AWS Translate. Powered by Amplify." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-gradient" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo" id="logo-link">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="url(#logoGrad)" />
+            <path d="M7 10h10M7 14h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#818cf8"/>
+                <stop offset="100%" stop-color="#c084fc"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">SubtitleAI</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#languages" class="nav-link">Languages</a>
+        <a href="#generate" class="nav-link">Try Now</a>
+      </div>
+
+      <div class="nav-actions">
+        <div class="aws-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#FF9900"/><path d="M8 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          AWS Powered
+        </div>
+        <a href="#generate" class="btn-nav" id="nav-cta">Start Free</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Powered by AWS Transcribe & Translate
+      </div>
+      <h1 class="hero-title">
+        Generate Subtitles<br />
+        <span class="gradient-text">Automatically</span>
+      </h1>
+      <p class="hero-subtitle">
+        Upload your video and let AI transcribe speech in real-time, then translate to 75+ languages instantly. Powered by AWS Amplify, Transcribe, and Translate.
+      </p>
+      <div class="hero-actions">
+        <a href="#generate" class="btn-primary" id="hero-cta">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill="currentColor"/></svg>
+          Generate Subtitles
+        </a>
+        <a href="#how-it-works" class="btn-secondary" id="hero-learn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          See How It Works
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value">75+</span>
+          <span class="stat-label">Languages</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">99%</span>
+          <span class="stat-label">Accuracy</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">&lt;2min</span>
+          <span class="stat-label">Processing</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Video Preview -->
+    <div class="hero-visual">
+      <div class="video-mockup" id="hero-mockup">
+        <div class="video-mockup-inner">
+          <div class="video-screen">
+            <div class="video-placeholder">
+              <div class="play-ring">
+                <svg class="play-icon-large" width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill="white"/></svg>
+              </div>
+              <div class="waveform" aria-hidden="true">
+                <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+              </div>
+            </div>
+            <div class="subtitle-preview-bar">
+              <div class="subtitle-text-animated" id="subtitle-demo">
+                <span class="sub-word">Hello,</span>
+                <span class="sub-word">welcome</span>
+                <span class="sub-word">to</span>
+                <span class="sub-word">SubtitleAI</span>
+              </div>
+            </div>
+          </div>
+          <div class="video-controls-bar">
+            <div class="ctrl-progress"><div class="ctrl-progress-fill"></div></div>
+            <div class="ctrl-icons">
+              <div class="ctrl-dot"></div>
+              <div class="ctrl-dot"></div>
+              <div class="ctrl-dot ctrl-dot-lg"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Cards -->
+        <div class="float-card card-transcribe" id="float-card-1">
+          <div class="float-card-icon">🎙️</div>
+          <div class="float-card-info">
+            <div class="float-card-title">AWS Transcribe</div>
+            <div class="float-card-sub">Speech → Text</div>
+          </div>
+          <div class="float-card-dot active"></div>
+        </div>
+        <div class="float-card card-translate" id="float-card-2">
+          <div class="float-card-icon">🌍</div>
+          <div class="float-card-info">
+            <div class="float-card-title">AWS Translate</div>
+            <div class="float-card-sub">75+ Languages</div>
+          </div>
+          <div class="float-card-dot active"></div>
+        </div>
+        <div class="float-card card-export" id="float-card-3">
+          <div class="float-card-icon">📄</div>
+          <div class="float-card-info">
+            <div class="float-card-title">Export SRT/VTT</div>
+            <div class="float-card-sub">Ready to use</div>
+          </div>
+          <div class="float-card-dot active"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-chip">✦ Features</div>
+        <h2 class="section-title">Everything You Need</h2>
+        <p class="section-desc">A complete AI-powered subtitle pipeline from upload to export</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card feature-card-main" id="feature-transcribe">
+          <div class="feature-glow"></div>
+          <div class="feature-icon-wrap">
+            <span class="feature-icon">🎙️</span>
+          </div>
+          <h3 class="feature-title">Auto-Transcription</h3>
+          <p class="feature-desc">Powered by AWS Transcribe, our AI identifies speech with 99% accuracy, even with accents and background noise. Real-time streaming available.</p>
+          <ul class="feature-list">
+            <li>Custom vocabulary support</li>
+            <li>Speaker diarization</li>
+            <li>Automatic punctuation</li>
+            <li>Profanity filtering</li>
+          </ul>
+          <div class="feature-tag">AWS Transcribe</div>
+        </div>
+
+        <div class="feature-card" id="feature-translate">
+          <div class="feature-glow feature-glow-purple"></div>
+          <div class="feature-icon-wrap">
+            <span class="feature-icon">🌍</span>
+          </div>
+          <h3 class="feature-title">Multi-Language Translation</h3>
+          <p class="feature-desc">Instantly translate subtitles to 75+ languages with neural machine translation from AWS Translate.</p>
+          <div class="feature-tag feature-tag-purple">AWS Translate</div>
+        </div>
+
+        <div class="feature-card" id="feature-export">
+          <div class="feature-glow feature-glow-teal"></div>
+          <div class="feature-icon-wrap">
+            <span class="feature-icon">📄</span>
+          </div>
+          <h3 class="feature-title">Multiple Export Formats</h3>
+          <p class="feature-desc">Download as SRT, VTT, ASS, or plain TXT. Compatible with all major video players and editors.</p>
+          <div class="feature-tag feature-tag-teal">SRT · VTT · ASS · TXT</div>
+        </div>
+
+        <div class="feature-card" id="feature-realtime">
+          <div class="feature-glow feature-glow-orange"></div>
+          <div class="feature-icon-wrap">
+            <span class="feature-icon">⚡</span>
+          </div>
+          <h3 class="feature-title">Real-Time Processing</h3>
+          <p class="feature-desc">WebSocket-powered streaming transcription gives you subtitles as the video plays, with sub-second latency.</p>
+          <div class="feature-tag feature-tag-orange">Real-Time</div>
+        </div>
+
+        <div class="feature-card" id="feature-amplify">
+          <div class="feature-glow feature-glow-pink"></div>
+          <div class="feature-icon-wrap">
+            <span class="feature-icon">☁️</span>
+          </div>
+          <h3 class="feature-title">AWS Amplify Backend</h3>
+          <p class="feature-desc">Secure authentication, cloud storage, and serverless API all managed by AWS Amplify Gen 2.</p>
+          <div class="feature-tag feature-tag-pink">AWS Amplify</div>
+        </div>
+
+        <div class="feature-card" id="feature-edit">
+          <div class="feature-glow feature-glow-cyan"></div>
+          <div class="feature-icon-wrap">
+            <span class="feature-icon">✏️</span>
+          </div>
+          <h3 class="feature-title">Subtitle Editor</h3>
+          <p class="feature-desc">Fine-tune timing, edit text, and adjust styles with our built-in WYSIWYG subtitle editor.</p>
+          <div class="feature-tag feature-tag-cyan">Editor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-chip">✦ Process</div>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-desc">Three simple steps to professional subtitles</p>
+      </div>
+      <div class="steps-track">
+        <div class="steps-line" aria-hidden="true"></div>
+        <div class="steps-line-fill" id="steps-line-fill" aria-hidden="true"></div>
+
+        <div class="step-item" id="step-1">
+          <div class="step-bubble">
+            <div class="step-number">01</div>
+            <div class="step-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="step-content">
+            <h3 class="step-title">Upload Video</h3>
+            <p class="step-desc">Drag and drop or upload your video file. Supports MP4, MOV, AVI, MKV, and WebM up to 2GB. Files are securely stored in Amazon S3 via AWS Amplify.</p>
+            <div class="step-tech">Amazon S3 + Amplify Storage</div>
+          </div>
+        </div>
+
+        <div class="step-item" id="step-2">
+          <div class="step-bubble">
+            <div class="step-number">02</div>
+            <div class="step-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3zM19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="step-content">
+            <h3 class="step-title">AI Transcription</h3>
+            <p class="step-desc">AWS Transcribe automatically extracts speech from the audio track, generating timestamped subtitles with speaker detection and punctuation.</p>
+            <div class="step-tech">AWS Transcribe (Streaming / Batch)</div>
+          </div>
+        </div>
+
+        <div class="step-item" id="step-3">
+          <div class="step-bubble">
+            <div class="step-number">03</div>
+            <div class="step-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10A15.3 15.3 0 018 12a15.3 15.3 0 014-10zM2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+          <div class="step-content">
+            <h3 class="step-title">Translate & Export</h3>
+            <p class="step-desc">Select your target language and AWS Translate generates accurate subtitles. Download in SRT, VTT or any other format instantly.</p>
+            <div class="step-tech">AWS Translate + Export Engine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Language Section -->
+  <section class="languages-section" id="languages">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-chip">✦ Languages</div>
+        <h2 class="section-title">75+ Languages Supported</h2>
+        <p class="section-desc">From transcription to translation, we've got the world covered</p>
+      </div>
+      <div class="lang-scroll-wrapper">
+        <div class="lang-track lang-track-1" aria-hidden="true">
+          <div class="lang-pill">🇺🇸 English</div>
+          <div class="lang-pill">🇪🇸 Spanish</div>
+          <div class="lang-pill">🇫🇷 French</div>
+          <div class="lang-pill">🇩🇪 German</div>
+          <div class="lang-pill">🇯🇵 Japanese</div>
+          <div class="lang-pill">🇰🇷 Korean</div>
+          <div class="lang-pill">🇨🇳 Chinese</div>
+          <div class="lang-pill">🇮🇳 Hindi</div>
+          <div class="lang-pill">🇸🇦 Arabic</div>
+          <div class="lang-pill">🇧🇷 Portuguese</div>
+          <div class="lang-pill">🇮🇹 Italian</div>
+          <div class="lang-pill">🇷🇺 Russian</div>
+          <!-- Duplicate for infinite scroll -->
+          <div class="lang-pill">🇺🇸 English</div>
+          <div class="lang-pill">🇪🇸 Spanish</div>
+          <div class="lang-pill">🇫🇷 French</div>
+          <div class="lang-pill">🇩🇪 German</div>
+          <div class="lang-pill">🇯🇵 Japanese</div>
+          <div class="lang-pill">🇰🇷 Korean</div>
+          <div class="lang-pill">🇨🇳 Chinese</div>
+          <div class="lang-pill">🇮🇳 Hindi</div>
+          <div class="lang-pill">🇸🇦 Arabic</div>
+          <div class="lang-pill">🇧🇷 Portuguese</div>
+          <div class="lang-pill">🇮🇹 Italian</div>
+          <div class="lang-pill">🇷🇺 Russian</div>
+        </div>
+        <div class="lang-track lang-track-2" aria-hidden="true">
+          <div class="lang-pill">🇳🇱 Dutch</div>
+          <div class="lang-pill">🇵🇱 Polish</div>
+          <div class="lang-pill">🇹🇷 Turkish</div>
+          <div class="lang-pill">🇸🇪 Swedish</div>
+          <div class="lang-pill">🇳🇴 Norwegian</div>
+          <div class="lang-pill">🇩🇰 Danish</div>
+          <div class="lang-pill">🇫🇮 Finnish</div>
+          <div class="lang-pill">🇬🇷 Greek</div>
+          <div class="lang-pill">🇮🇱 Hebrew</div>
+          <div class="lang-pill">🇹🇭 Thai</div>
+          <div class="lang-pill">🇻🇳 Vietnamese</div>
+          <div class="lang-pill">🇮🇩 Indonesian</div>
+          <!-- Duplicate for infinite scroll -->
+          <div class="lang-pill">🇳🇱 Dutch</div>
+          <div class="lang-pill">🇵🇱 Polish</div>
+          <div class="lang-pill">🇹🇷 Turkish</div>
+          <div class="lang-pill">🇸🇪 Swedish</div>
+          <div class="lang-pill">🇳🇴 Norwegian</div>
+          <div class="lang-pill">🇩🇰 Danish</div>
+          <div class="lang-pill">🇫🇮 Finnish</div>
+          <div class="lang-pill">🇬🇷 Greek</div>
+          <div class="lang-pill">🇮🇱 Hebrew</div>
+          <div class="lang-pill">🇹🇭 Thai</div>
+          <div class="lang-pill">🇻🇳 Vietnamese</div>
+          <div class="lang-pill">🇮🇩 Indonesian</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Generator Section (Main App) -->
+  <section class="generator-section" id="generate">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-chip">✦ Try It Now</div>
+        <h2 class="section-title">Generate Subtitles</h2>
+        <p class="section-desc">Upload your video and get subtitles in seconds</p>
+      </div>
+
+      <div class="generator-layout">
+        <!-- Upload Panel -->
+        <div class="gen-panel" id="upload-panel">
+          <div class="panel-header">
+            <div class="panel-step-badge">Step 1</div>
+            <h3 class="panel-title">Upload Video</h3>
+          </div>
+
+          <div class="upload-zone" id="upload-zone" tabindex="0" role="button" aria-label="Upload video file">
+            <input type="file" id="file-input" accept="video/*" hidden />
+            <div class="upload-content" id="upload-content">
+              <div class="upload-icon-wrap">
+                <svg class="upload-icon" width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <p class="upload-main-text">Drop your video here</p>
+              <p class="upload-sub-text">or <span class="upload-browse">browse files</span></p>
+              <div class="upload-formats">MP4 · MOV · AVI · MKV · WebM · up to 2GB</div>
+            </div>
+            <div class="upload-preview hidden" id="upload-preview">
+              <div class="preview-icon">🎬</div>
+              <div class="preview-info">
+                <div class="preview-name" id="preview-name">video.mp4</div>
+                <div class="preview-size" id="preview-size">0 MB</div>
+              </div>
+              <button class="preview-remove" id="preview-remove" aria-label="Remove file">✕</button>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <div class="setting-group">
+              <label class="setting-label" for="source-lang">Source Language</label>
+              <div class="select-wrap">
+                <select class="setting-select" id="source-lang">
+                  <option value="auto">🔍 Auto-detect</option>
+                  <option value="en-US">🇺🇸 English (US)</option>
+                  <option value="en-GB">🇬🇧 English (UK)</option>
+                  <option value="es-ES">🇪🇸 Spanish</option>
+                  <option value="fr-FR">🇫🇷 French</option>
+                  <option value="de-DE">🇩🇪 German</option>
+                  <option value="ja-JP">🇯🇵 Japanese</option>
+                  <option value="ko-KR">🇰🇷 Korean</option>
+                  <option value="zh-CN">🇨🇳 Chinese (Simplified)</option>
+                  <option value="hi-IN">🇮🇳 Hindi</option>
+                  <option value="ar-SA">🇸🇦 Arabic</option>
+                  <option value="pt-BR">🇧🇷 Portuguese</option>
+                  <option value="it-IT">🇮🇹 Italian</option>
+                  <option value="ru-RU">🇷🇺 Russian</option>
+                </select>
+                <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <label class="setting-label" for="target-lang">Translate To</label>
+              <div class="select-wrap">
+                <select class="setting-select" id="target-lang">
+                  <option value="none">— No Translation —</option>
+                  <option value="es">🇪🇸 Spanish</option>
+                  <option value="fr">🇫🇷 French</option>
+                  <option value="de">🇩🇪 German</option>
+                  <option value="ja">🇯🇵 Japanese</option>
+                  <option value="ko">🇰🇷 Korean</option>
+                  <option value="zh">🇨🇳 Chinese</option>
+                  <option value="hi">🇮🇳 Hindi</option>
+                  <option value="ar">🇸🇦 Arabic</option>
+                  <option value="pt">🇧🇷 Portuguese</option>
+                  <option value="it">🇮🇹 Italian</option>
+                  <option value="ru">🇷🇺 Russian</option>
+                  <option value="nl">🇳🇱 Dutch</option>
+                  <option value="pl">🇵🇱 Polish</option>
+                  <option value="tr">🇹🇷 Turkish</option>
+                  <option value="sv">🇸🇪 Swedish</option>
+                  <option value="th">🇹🇭 Thai</option>
+                  <option value="vi">🇻🇳 Vietnamese</option>
+                </select>
+                <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <label class="setting-label" for="export-format">Export Format</label>
+              <div class="select-wrap">
+                <select class="setting-select" id="export-format">
+                  <option value="srt">SRT (SubRip)</option>
+                  <option value="vtt">VTT (WebVTT)</option>
+                  <option value="ass">ASS (Advanced)</option>
+                  <option value="txt">TXT (Plain Text)</option>
+                </select>
+                <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <label class="setting-label" for="speaker-detect">Speaker Detection</label>
+              <div class="toggle-wrap">
+                <input type="checkbox" id="speaker-detect" class="toggle-input" checked />
+                <label for="speaker-detect" class="toggle-label">
+                  <span class="toggle-track">
+                    <span class="toggle-thumb"></span>
+                  </span>
+                  <span class="toggle-text" id="speaker-text">Enabled</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-generate" id="btn-generate" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="currentColor" opacity="0.3"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Generate Subtitles
+          </button>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="gen-panel results-panel" id="results-panel">
+          <div class="panel-header">
+            <div class="panel-step-badge panel-step-badge-2">Step 2</div>
+            <h3 class="panel-title">Results</h3>
+            <div class="panel-status" id="panel-status">Waiting…</div>
+          </div>
+
+          <!-- Progress View -->
+          <div class="progress-view" id="progress-view">
+            <div class="progress-stages">
+              <div class="progress-stage" id="stage-upload">
+                <div class="stage-icon">☁️</div>
+                <div class="stage-info">
+                  <div class="stage-name">Uploading to S3</div>
+                  <div class="stage-desc">via Amplify Storage</div>
+                </div>
+                <div class="stage-status" id="stage-upload-status">pending</div>
+              </div>
+              <div class="progress-stage" id="stage-transcribe">
+                <div class="stage-icon">🎙️</div>
+                <div class="stage-info">
+                  <div class="stage-name">AWS Transcribe</div>
+                  <div class="stage-desc">Speech recognition</div>
+                </div>
+                <div class="stage-status" id="stage-transcribe-status">pending</div>
+              </div>
+              <div class="progress-stage" id="stage-translate">
+                <div class="stage-icon">🌍</div>
+                <div class="stage-info">
+                  <div class="stage-name">AWS Translate</div>
+                  <div class="stage-desc">Language translation</div>
+                </div>
+                <div class="stage-status" id="stage-translate-status">pending</div>
+              </div>
+              <div class="progress-stage" id="stage-format">
+                <div class="stage-icon">📄</div>
+                <div class="stage-info">
+                  <div class="stage-name">Format Export</div>
+                  <div class="stage-desc">Generating subtitle file</div>
+                </div>
+                <div class="stage-status" id="stage-format-status">pending</div>
+              </div>
+            </div>
+            <div class="main-progress-bar-wrap">
+              <div class="main-progress-bar" id="main-progress-bar">
+                <div class="main-progress-fill" id="main-progress-fill"></div>
+              </div>
+              <div class="progress-pct" id="progress-pct">0%</div>
+            </div>
+          </div>
+
+          <!-- Empty / Idle State -->
+          <div class="idle-state" id="idle-state">
+            <div class="idle-icon">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 11h10M7 14h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <p class="idle-text">Upload a video and click <strong>Generate Subtitles</strong> to get started</p>
+          </div>
+
+          <!-- Subtitle Output -->
+          <div class="subtitle-output hidden" id="subtitle-output">
+            <div class="output-toolbar">
+              <div class="output-stats" id="output-stats">
+                <span class="stat-badge" id="stat-lines">0 lines</span>
+                <span class="stat-badge" id="stat-words">0 words</span>
+                <span class="stat-badge stat-badge-green" id="stat-lang">English</span>
+              </div>
+              <div class="output-actions">
+                <button class="btn-copy" id="btn-copy" title="Copy to clipboard">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  Copy
+                </button>
+                <button class="btn-download" id="btn-download" title="Download subtitle file">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Download
+                </button>
+              </div>
+            </div>
+            <div class="subtitle-editor" id="subtitle-editor" contenteditable="true" spellcheck="false" aria-label="Subtitle editor"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWS Architecture Section -->
+  <section class="arch-section" id="architecture">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-chip">✦ Architecture</div>
+        <h2 class="section-title">Powered by AWS</h2>
+        <p class="section-desc">Enterprise-grade cloud infrastructure under the hood</p>
+      </div>
+      <div class="arch-diagram">
+        <div class="arch-node arch-node-user">
+          <div class="arch-node-icon">👤</div>
+          <div class="arch-node-label">User</div>
+        </div>
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-tip">►</div>
+          <div class="arch-arrow-label">HTTPS</div>
+        </div>
+        <div class="arch-node arch-node-amplify">
+          <div class="arch-node-icon">⚡</div>
+          <div class="arch-node-label">Amplify<br/>Hosting</div>
+        </div>
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-tip">►</div>
+          <div class="arch-arrow-label">Auth + API</div>
+        </div>
+        <div class="arch-node arch-node-api">
+          <div class="arch-node-icon">🔌</div>
+          <div class="arch-node-label">API<br/>Gateway</div>
+        </div>
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-tip">►</div>
+          <div class="arch-arrow-label">Trigger</div>
+        </div>
+        <div class="arch-node-group">
+          <div class="arch-node arch-node-lambda">
+            <div class="arch-node-icon">λ</div>
+            <div class="arch-node-label">Lambda</div>
+          </div>
+          <div class="arch-vertical-arrows">
+            <div class="arch-v-arrow">
+              <span>🎙️</span>
+              <div class="arch-v-line"></div>
+              <span>Transcribe</span>
+            </div>
+            <div class="arch-v-arrow">
+              <span>🌍</span>
+              <div class="arch-v-line"></div>
+              <span>Translate</span>
+            </div>
+            <div class="arch-v-arrow">
+              <span>💾</span>
+              <div class="arch-v-line"></div>
+              <span>S3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="url(#footerGrad)"/><path d="M7 10h10M7 14h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><defs><linearGradient id="footerGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#818cf8"/><stop offset="100%" stop-color="#c084fc"/></linearGradient></defs></svg>
+        </div>
+        <span class="logo-text">SubtitleAI</span>
+      </div>
+      <div class="footer-powered">
+        <span>Powered by</span>
+        <span class="powered-badge">AWS Amplify</span>
+        <span class="powered-badge">AWS Transcribe</span>
+        <span class="powered-badge">AWS Translate</span>
+      </div>
+      <div class="footer-copy">© 2026 SubtitleAI. Built with AWS services.</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
